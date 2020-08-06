@@ -14,10 +14,29 @@ class Test_model extends CI_Model {
 	public function get_people_by_id($nationalId){
 		$this->db->select('*');
 		$this->db->from('peoples');
-		$this->db->where('national_id', $nationalId);
+		$this->db->where('nationalId', $nationalId);
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	public function save_data($data){
+		
+		$this->db->select('*');
+		$this->db->from('peoples');
+		$this->db->where('nationalId', $data['nationalId']);
+		$query = $this->db->get();
+		$resp = $query->num_rows();
+
+		if ($resp != 1) {
+			$this->db->insert('peoples',$data);
+			return 1;
+		}else{
+			 return 0;
+		}
+		
+	}
+
+	
 	
 	  
 }

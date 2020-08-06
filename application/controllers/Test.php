@@ -43,24 +43,37 @@ class Test extends REST_Controller {
 	}
 
 	//function permit create a new person
-	public function people_get(  )
+	public function people_post()
 	{	
-
 		$data = array();
-		if (isset($nationalId)) 
-		{
-			$data = $this->Test_model->get_people_by_id($nationalId);
-			if (count($data) == 0) {
-				$data = array('status' => 404);
+		if (json_decode(trim(file_get_contents('php://input')), true)) {
+			$input_data = json_decode(trim(file_get_contents('php://input')), true);
+			if (count($input_data)>0) {
+				$resp = $this->Test_model->save_data($input_data);
+				if ($resp == 1) {
+					$data = array('status' => 201);
+				}else{
+					$data = array('status' => 500);
+				}
+			}else{
+				$data = array('status' => 500);
 			}
-
 		}else{
-			$data = array('status' => 404);
+
+			$data = array('status' => 400);
 		}
-		echo json_encode($data);
+
+
+ 		echo json_encode($data);
+
 	}
 
-	
+	// //function permit add a new person
+	// function people_post()
+ //    {
+ //    	
+
+ //    }
 
 
 }
