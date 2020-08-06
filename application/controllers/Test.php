@@ -5,8 +5,6 @@ require APPPATH . 'libraries/REST_Controller.php';
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 
-// http://35.247.252.19/23people/Restserver/courses/
-
 class Test extends REST_Controller {
 
 	public function __construct() {
