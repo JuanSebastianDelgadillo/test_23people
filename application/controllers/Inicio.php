@@ -6,7 +6,7 @@ class Inicio extends CI_Controller {
 
 	public function index()
 	{
-		echo 'Inicio del test':
+		echo 'Inicio del test para 23people';
 	}
 
 
