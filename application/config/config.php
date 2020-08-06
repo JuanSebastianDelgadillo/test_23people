@@ -24,7 +24,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 // $config['base_url'] = 'http://localhost/test_23people/';
-$config['base_url'] = 'http://'.$_SERVER["SERVER_NAME"].'/test_23people/';
+// $config['base_url'] = 'http://'.$_SERVER["SERVER_NAME"].'/test_23people/';
+$config['base_url'] = 'http://35.184.54.172/test_23people/';
+
 
 /*
 |--------------------------------------------------------------------------
