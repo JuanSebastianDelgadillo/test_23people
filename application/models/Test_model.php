@@ -36,6 +36,13 @@ class Test_model extends CI_Model {
 		
 	}
 
+	public function delete_person($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('peoples');
+		return $this->db->affected_rows();
+	}
+
 	
 	
 	  

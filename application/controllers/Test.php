@@ -68,12 +68,18 @@ class Test extends REST_Controller {
 
 	}
 
-	// //function permit add a new person
-	// function people_post()
- //    {
- //    	
+	public function people_delete($id)
+	{	
+		$resp = $this->Test_model->delete_person($id);
+		if ($resp) {
+			$data = array('status' => 201);
+		}else{
+			$data = array('status' => 404);
+		}
+ 		echo json_encode($data);
 
- //    }
+	}
+
 
 
 }
