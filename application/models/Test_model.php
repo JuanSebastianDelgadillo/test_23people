@@ -20,7 +20,6 @@ class Test_model extends CI_Model {
 	}
 
 	public function save_data($data){
-		
 		$this->db->select('*');
 		$this->db->from('peoples');
 		$this->db->where('nationalId', $data['nationalId']);
@@ -36,15 +35,29 @@ class Test_model extends CI_Model {
 		
 	}
 
+	public function update_data($data){
+		$this->db->select('*');
+		$this->db->from('peoples');
+		$this->db->where('nationalId', $data['nationalId']);
+		$query = $this->db->get();
+		$resp = $query->num_rows();
+
+		if ($resp == 1) {
+			$this->db->where('nationalId', $data['nationalId']);
+			$this->db->update('peoples', $data);
+			return $this->db->affected_rows();
+		}else{
+			 return 0;
+		}
+		
+	}
+
 	public function delete_person($id)
 	{
 		$this->db->where('id', $id);
 		$this->db->delete('peoples');
 		return $this->db->affected_rows();
 	}
-
-	
-	
 	  
 }
 

@@ -25,7 +25,7 @@ class Test extends REST_Controller {
 
 	}
 	//function permit get people by national id
-	public function people_get( $nationalId )
+	public function people_get( $nationalId = null)
 	{	
 
 		$data = array();
@@ -37,7 +37,8 @@ class Test extends REST_Controller {
 			}
 
 		}else{
-			$data = array('status' => 404);
+			$data = array();
+			$data = $this->Test_model->get_all_people();
 		}
 		echo json_encode($data);
 	}
@@ -64,6 +65,33 @@ class Test extends REST_Controller {
 		}
 
 
+ 		echo json_encode($data);
+
+	}
+
+	public function people_put( $nationalId = null )
+	{	
+		if ($nationalId != null) {
+			$data = array();
+			if (json_decode(trim(file_get_contents('php://input')), true)) {
+				$input_data = json_decode(trim(file_get_contents('php://input')), true);
+				if (count($input_data)>0) {
+					$resp = $this->Test_model->update_data($input_data);
+					if ($resp == 1) {
+						$data = array('status' => 201);
+					}else{
+						$data = array('status' => 501);
+					}
+				}else{
+					$data = array('status' => 500);
+				}
+			}else{
+
+				$data = array('status' => 400);
+			}
+		}else{
+			$data = array('status' => 500);
+		}
  		echo json_encode($data);
 
 	}
